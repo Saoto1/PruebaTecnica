@@ -5,10 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 //***************
 using Microsoft.EntityFrameworkCore;
-using SalonBelleza.EntidadesDeNegocio;
-namespace SalonBelleza.AccesoADatos
+using PruebaTecnica.EntidadesDeNegocio;
+namespace PruebaTecnica.AccesoADatos
 {
-    public class ClienteDAL
+    public class ClientesDAL
     {
         public static async Task<int> CrearAsync(Clientes pCliente) 
         {
@@ -59,15 +59,7 @@ namespace SalonBelleza.AccesoADatos
             return cliente;
         }
 
-        public static async Task<List<Clientes>> ObtenerTodosAsync()
-        {
-            var clientes = new List<Clientes>();
-            using (var bdContexto = new DBContexto())
-            {
-                clientes = await bdContexto.Cliente.ToListAsync();
-            }
-            return clientes;
-        }
+ 
 
         internal static IQueryable<Clientes> QuerySelect(IQueryable<Clientes> pQuery, Clientes pCliente)
         {

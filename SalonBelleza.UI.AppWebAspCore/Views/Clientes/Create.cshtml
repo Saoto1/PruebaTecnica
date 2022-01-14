@@ -1,16 +1,20 @@
-﻿@model SalonBelleza.EntidadesDeNegocio.Cliente
+﻿@model PruebaTecnica.EntidadesDeNegocio.Clientes
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Create";
 }
-
-<h1>Modificar Cliente</h1>
+<style>
+    .btn {
+        margin: 20px;
+        margin-left: 1px;
+    }
+</style>
+<h1>Crear Cliente</h1>
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Edit">
+        <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Id" class="form-control" />
             <div class="form-group">
                 <label asp-for="Nombre" class="control-label"></label>
                 <input asp-for="Nombre" class="form-control" />
@@ -39,12 +43,6 @@
         </form>
     </div>
 </div>
-
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-    <script>
-        $(function () {
-            $("form input[name]").trigger("blur");
-        });
-    </script>
 }

@@ -22,7 +22,7 @@ namespace SalonBelleza.UI.AppWebAspCore.Controllers
             _logger = logger;
         }
 
-        [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
+        
         public IActionResult Index()
         {
             return View();
@@ -33,7 +33,7 @@ namespace SalonBelleza.UI.AppWebAspCore.Controllers
             return View();
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+      
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });

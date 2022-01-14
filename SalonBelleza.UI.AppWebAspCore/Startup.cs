@@ -10,10 +10,9 @@ using System.Linq;
 using System.Threading.Tasks;
 
 //***********
-using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Http;
 
-namespace SalonBelleza.UI.AppWebAspCore
+namespace PruebaTecnica.UI.AppWebAspCore
 {
     public class Startup
     {
@@ -28,17 +27,7 @@ namespace SalonBelleza.UI.AppWebAspCore
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            //Con este servicio estamos utilizando la vaiidacion por Login.
-            // Configurar la autentificacion 
-            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie((o) =>
-            {
-                // Aca se redireccionara en caso que no posea permiso. Ira a la vista de Login.
-                o.LoginPath = new PathString("/Usuario/login");
-                                    //tiempo de duracion de las cookies, en este caso se han puesto 8 horas.
-                o.ExpireTimeSpan = TimeSpan.FromHours(10);
-                o.AccessDeniedPath= new PathString("/Usuario/AccessDenied");
-                o.SlidingExpiration = true;
-            });
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -59,10 +48,8 @@ namespace SalonBelleza.UI.AppWebAspCore
 
             app.UseRouting();
 
-            app.UseAuthorization();
-            //********************************
-            // Permitir la autentificacion en la aplicacion Web
-            app.UseAuthentication();
+         
+          
 
             app.UseEndpoints(endpoints =>
             {

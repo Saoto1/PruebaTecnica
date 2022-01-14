@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace SalonBelleza.EntidadesDeNegocio
+namespace PruebaTecnica.EntidadesDeNegocio
 {
     public class Clientes
     {
@@ -36,6 +36,6 @@ namespace SalonBelleza.EntidadesDeNegocio
         [NotMapped]
         public int Top_Aux { get; set; }
 
-        public List<Cita> Cita { get; set; }
+        //public List<Cita> Cita { get; set; }
     }
 }

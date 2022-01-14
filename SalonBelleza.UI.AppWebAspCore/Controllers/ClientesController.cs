@@ -5,17 +5,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 /*********************************/
-using SalonBelleza.EntidadesDeNegocio;
-using SalonBelleza.LogicaDeNegocio;
+using PruebaTecnica.EntidadesDeNegocio;
+using PruebaTecnica.LogicaDeNegocio;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Authentication.Cookies;
 
-namespace SalonBelleza.UI.AppWebAspCore.Controllers
+namespace PruebaTecnica.UI.AppWebAspCore.Controllers
 {
-    [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
-    public class ClienteController : Controller
+    
+    public class ClientesController : Controller
     {
-        ClienteBL clienteBL = new ClienteBL();
+        ClientesBL clienteBL = new ClientesBL();
         // GET: ClienteController
         public async Task<IActionResult> Index(Clientes pCliente = null)
         {
@@ -46,7 +46,7 @@ namespace SalonBelleza.UI.AppWebAspCore.Controllers
 
         // POST: ClienteController/Create
         [HttpPost]
-        [ValidateAntiForgeryToken]
+      
         public async Task<IActionResult> Create(Clientes pCliente)
         {
             try
@@ -71,7 +71,7 @@ namespace SalonBelleza.UI.AppWebAspCore.Controllers
 
         // POST: ClienteController/Edit/5
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        
         public async Task<IActionResult> Edit(int id, Clientes pCliente)
         {
             try
@@ -96,7 +96,7 @@ namespace SalonBelleza.UI.AppWebAspCore.Controllers
 
         // POST: ClienteController/Delete/5
         [HttpPost]
-        [ValidateAntiForgeryToken]
+      
         public async Task<IActionResult> Delete(int id, Clientes pCliente)
         {
             try
