@@ -115,49 +115,35 @@ namespace PruebaTecnica.AccesoADatos
                 return vendidoyA;
             }
 
-        //    internal static IQueryable<Cita> QuerySelect(IQueryable<Cita> pQuery, AlquiladosYVendidos pAlquiladosYVendidos) //los internal solo funcionan en su respectivo namespace 
-        //    {
-        //        if (pCita.Id > 0)
-        //            pQuery = pQuery.Where(s => s.Id == pCita.Id);
-        //        if (pCita.IdUsuario > 0)
-        //            pQuery = pQuery.Where(s => s.IdUsuario == pCita.IdUsuario);
-        //        if (pCita.IdCliente > 0)
-        //            pQuery = pQuery.Where(s => s.IdCliente == pCita.IdCliente);
-        //        if (pCita.FechaRegistrada.Year > 1000)
-        //        {
-        //            DateTime fechaInicial = new DateTime(pCita.FechaRegistrada.Year, pCita.FechaRegistrada.Month, pCita.FechaRegistrada.Day, 0, 0, 0);
-        //            DateTime fechaFinal = fechaInicial.AddDays(1).AddMilliseconds(-1);
-        //            pQuery = pQuery.Where(s => s.FechaRegistrada >= fechaInicial && s.FechaRegistrada <= fechaFinal);
-        //        }
-        //        pQuery = pQuery.OrderByDescending(s => s.Id).AsQueryable();
-        //        if (pCita.FechaCita.Year > 1000)
-        //        {
-        //            DateTime fechaInicial = new DateTime(pCita.FechaCita.Year, pCita.FechaCita.Month, pCita.FechaCita.Day, 0, 0, 0);
-        //            DateTime fechaFinal = fechaInicial.AddDays(1).AddMilliseconds(-1);
-        //            pQuery = pQuery.Where(s => s.FechaCita >= fechaInicial && s.FechaCita <= fechaFinal);
-        //        }
-        //        pQuery = pQuery.OrderByDescending(s => s.Id).AsQueryable();
-        //        if (pCita.Total > 0)
-        //            pQuery = pQuery.Where(s => s.Total == pCita.Total);
-        //        if (pCita.Estado > 0)
-        //            pQuery = pQuery.Where(s => s.Estado == pCita.Estado);
-        //        if (pCita.Top_Aux > 0)
-        //            pQuery = pQuery.Take(pCita.Top_Aux).AsQueryable();
-        //        return pQuery;
-        //    }
+        internal static IQueryable<AlquiladosYVendidos> QuerySelect(IQueryable<AlquiladosYVendidos> pQuery, AlquiladosYVendidos pAlquiladosYVendidos) //los internal solo funcionan en su respectivo namespace 
+        {
+            if (pAlquiladosYVendidos.Id > 0)
+                pQuery = pQuery.Where(s => s.Id == pAlquiladosYVendidos.Id);
+            if (pAlquiladosYVendidos.IdCliente > 0)
+                pQuery = pQuery.Where(s => s.IdCliente == pAlquiladosYVendidos.IdCliente);
+            if (pAlquiladosYVendidos.IdLibro > 0)
+                pQuery = pQuery.Where(s => s.IdLibro == pAlquiladosYVendidos.IdLibro);
+            
+            pQuery = pQuery.OrderByDescending(s => s.Id).AsQueryable();          
+            if (pAlquiladosYVendidos.Estado > 0)
+                pQuery = pQuery.Where(s => s.Estado == pAlquiladosYVendidos.Estado);
+            if (pAlquiladosYVendidos.Top_Aux > 0)
+                pQuery = pQuery.Take(pAlquiladosYVendidos.Top_Aux).AsQueryable();
+            return pQuery;
+        }
 
-        //    public static async Task<List<Cita>> BuscarAsync(AlquiladosYVendidos pAlquiladosYVendidos)
-        //    {
-        //        var cita = new List<Cita>();
-        //        using (var dbContexto = new DBContexto()) //la palabra using encierra
-        //        {
-        //            var select = dbContexto.Cita.AsQueryable(); //esto es como un SELECT * FROM
-        //            select = QuerySelect(select, pCita);
-        //            cita = await select.ToListAsync();
-        //        }
-        //        return cita;
-        //    }
-        //    #endregion
+        public static async Task<List<AlquiladosYVendidos>> BuscarAsync(AlquiladosYVendidos pAlquiladosYVendidos)
+        {
+            var vendidoyA = new List<AlquiladosYVendidos>();
+            using (var dbContexto = new DBContexto()) //la palabra using encierra
+            {
+                var select = dbContexto.AlquiladosYVendidosliente.AsQueryable(); //esto es como un SELECT * FROM
+                select = QuerySelect(select, pAlquiladosYVendidos);
+                vendidoyA  = await select.ToListAsync();
+            }
+            return vendidoyA;
+        }
+        #endregion
 
         //    public static async Task<List<Cita>> BuscarIncluirUsuarioAsync(AlquiladosYVendidos pAlquiladosYVendidos)
         //    {
@@ -196,9 +182,9 @@ namespace PruebaTecnica.AccesoADatos
         //            cita = await select.ToListAsync();
         //        }
         //        return cita;
-        //    }
-        //}
-
-
     }
+}
+
+
+    
 
