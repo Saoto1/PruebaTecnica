@@ -7,8 +7,7 @@ using System.Threading.Tasks;
 /*********************************/
 using PruebaTecnica.EntidadesDeNegocio;
 using PruebaTecnica.LogicaDeNegocio;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Authentication.Cookies;
+
 
 namespace PruebaTecnica.UI.AppWebAspCore.Controllers
 {
