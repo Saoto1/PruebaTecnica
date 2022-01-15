@@ -36,6 +36,8 @@ namespace PruebaTecnica.EntidadesDeNegocio
         [NotMapped]
         public int Top_Aux { get; set; }
 
+        public List<AlquiladosYVendidos> alquiladosYVendidos { get; set; }
+
         //public List<Cita> Cita { get; set; }
     }
 }
