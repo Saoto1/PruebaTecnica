@@ -28,7 +28,12 @@ namespace PruebaTecnica.LogicaDeNegocio
         {
             return await ClientesDAL.ObtenerPorIdAsync(pCliente);
         }
-       
+
+        public async Task<List<Clientes>> ObtenerTodosAsync()
+        {
+            return await ClientesDAL.ObtenerTodosAsync();
+        }
+
         public async Task<List<Clientes>> BuscarAsync(Clientes pCliente1) 
         {
             return await ClientesDAL.BuscarAsync(pCliente1);

@@ -24,6 +24,13 @@ namespace PruebaTecnica.LogicaDeNegocio
         {
             return await LibrosDAL.EliminarAsync(pLibros);
         }
+
+
+        public async Task<List<Libros>> ObtenerTodosAsync()
+        {
+            return await LibrosDAL.ObtenerTodosAsync();
+        }
+
         public async Task<Libros> ObtenerPorIdAsync(Libros pLibros)
         {
             return await LibrosDAL.ObtenerPorIdAsync(pLibros);

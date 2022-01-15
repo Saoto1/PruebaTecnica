@@ -35,5 +35,24 @@ namespace PruebaTecnica.LogicaDeNegocio
             return await AlquiladosYVendidosDAL.BuscarAsync(pAlquiladosYVendidos);
         }
 
+
+
+        public async Task<List<AlquiladosYVendidos>> BuscarIncluirClientesAsync(AlquiladosYVendidos pAlquiladosYVendidos)
+        {
+            return await AlquiladosYVendidosDAL.BuscarIncluirClientesAsync(pAlquiladosYVendidos);
+        }
+
+        public async Task<List<AlquiladosYVendidos>> BuscarIncluirLibrosAsync(AlquiladosYVendidos pAlquiladosYVendidos)
+        {
+            return await AlquiladosYVendidosDAL.BuscarIncluirLibrosAsync(pAlquiladosYVendidos);
+        }
+
+        public async Task<List<AlquiladosYVendidos>> BuscarIncluirClienteLibroAsync(AlquiladosYVendidos pAlquiladosYVendidos)
+        {
+            return await AlquiladosYVendidosDAL.BuscarIncluirClienteLibroAsync(pAlquiladosYVendidos);
+        }
     }
+
+
+}
 }
