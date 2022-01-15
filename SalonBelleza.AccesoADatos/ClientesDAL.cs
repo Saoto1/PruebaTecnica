@@ -59,7 +59,16 @@ namespace PruebaTecnica.AccesoADatos
             return cliente;
         }
 
- 
+        public static async Task<List<Clientes>> ObtenerTodosAsync()
+        {
+            var clientes = new List<Clientes>();
+            using (var bdContexto = new DBContexto())
+            {
+                clientes = await bdContexto.Cliente.ToListAsync();
+            }
+            return clientes;
+        }
+
 
         internal static IQueryable<Clientes> QuerySelect(IQueryable<Clientes> pQuery, Clientes pCliente)
         {

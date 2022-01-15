@@ -65,6 +65,18 @@ namespace PruebaTecnica.AccesoADatos
         }
 
 
+        //Metodo para obtener todos los Usuarios en la base de Datos.'
+        public static async Task<List<Libros>> ObtenerTodosAsync()
+        {
+            var usuario = new List<Libros>(); //Variable que va a devolver nuestro metodo, en este caso una Lista.
+            using (var dbContexto = new DBContexto())
+            {
+                usuario = await dbContexto.Libro.ToListAsync();
+            }
+            return usuario;
+        }
+
+
 
         internal static IQueryable<Libros> QuerySelect(IQueryable<Libros> pQuery, Libros pLibros)
         {
@@ -105,6 +117,7 @@ namespace PruebaTecnica.AccesoADatos
             }
             return libros;
         }
+
 
     }
 

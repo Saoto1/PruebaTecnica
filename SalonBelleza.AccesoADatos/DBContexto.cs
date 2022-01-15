@@ -17,7 +17,7 @@ namespace PruebaTecnica.AccesoADatos
 
         public DbSet<Clientes> Cliente { get; set; }
         public DbSet<Libros> Libro { get; set; }
-        public DbSet<AlquiladosYVendidos> AlquiladosYVendidosliente { get; set; }
+        public DbSet<AlquiladosYVendidos> AlquiladosYVendidos { get; set; }
 
 
 
