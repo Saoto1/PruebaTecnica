@@ -26,13 +26,13 @@ namespace PruebaTecnica.UI.AppWebAspCore.Controllers
                 pAlquiladosYVendidos.Top_Aux = 0;
             var taskBuscarCliente = alquiladosYVBL.BuscarIncluirClientesAsync(pAlquiladosYVendidos);
             var taskObtenerTodosClientes = clientesBL.ObtenerTodosAsync();
-            var taskBuscarUsuario = alquiladosYVBL.BuscarIncluirLibrosAsync(pCita);
-            var taskObtenerTodosUsuarios = librosBL.ObtenerTodosAsync();
-            var taskBuscarUsuarioCliente = alquiladosYVBL.BuscarIncluirUsuarioClienteAsync(pCita);
+            var taskBuscarUsuario = alquiladosYVBL.BuscarIncluirLibrosAsync(pAlquiladosYVendidos);
+            var taskObtenerTodosLibros = librosBL.ObtenerTodosAsync();
+            var taskBuscarUsuarioCliente = alquiladosYVBL.BuscarIncluirClienteLibroAsync(pAlquiladosYVendidos);
             var citas = await taskBuscarUsuarioCliente;
-            ViewBag.Top = pCita.Top_Aux;
+            ViewBag.Top = pAlquiladosYVendidos.Top_Aux;
             ViewBag.Clientes = await taskObtenerTodosClientes;
-            ViewBag.Usuarios = await taskObtenerTodosUsuarios;
+            ViewBag.Libros = await taskObtenerTodosLibros;
 
             return View(alquiladosYVBL);
         }
@@ -40,22 +40,22 @@ namespace PruebaTecnica.UI.AppWebAspCore.Controllers
         // GET: CitaController/Details/5
         public async Task<IActionResult> Details(int id)
         {
-            var cita = await citaBL.ObtenerPorIdAsync(new Cita { Id = id });
-            var taskCliente = clienteBL.ObtenerPorIdAsync(new Cliente { Id = cita.IdCliente });
-            var taskUsuario = usuarioBL.ObtenerPorIdAsync(new Usuario { Id = cita.IdUsuario });
-            var taskDetalles = detalleCitaBL.BuscarIncluirServicioAsync(new DetalleCita { IdCita = cita.Id });
-            cita.Cliente = await taskCliente;
-            cita.Usuario = await taskUsuario;
-            cita.DetalleCita = await taskDetalles;
-            return View(cita);
+            var AlquiladoYV = await alquiladosYVBL.ObtenerPorIdAsync(new AlquiladosYVendidos { Id = id });
+            var taskCliente = clientesBL.ObtenerPorIdAsync(new Clientes { Id = AlquiladoYV.IdCliente });
+            var taskLibros = librosBL.ObtenerPorIdAsync(new Libros { Id = AlquiladoYV.IdLibro });
+            //var taskDetalles = detalleCitaBL.BuscarIncluirServicioAsync(new DetalleCita { IdCita = cita.Id });
+            AlquiladoYV.Clientes = await taskCliente;
+            AlquiladoYV.Libros = await taskLibros;
+            //cita.DetalleCita = await taskDetalles;
+            return View(AlquiladoYV);
         }
 
         // GET: CitaController/Create
         public async Task<IActionResult> Create()
         {
-            ViewBag.Clientes = await clienteBL.ObtenerTodosAsync();
-            ViewBag.Usuarios = await usuarioBL.ObtenerTodosAsync();
-            ViewBag.servicios = await servicioBL.ObtenerTodosAsync();
+            ViewBag.Clientes = await clientesBL.ObtenerTodosAsync();
+            ViewBag.Libros = await librosBL.ObtenerTodosAsync();
+            //ViewBag.servicios = await servicioBL.ObtenerTodosAsync();
             ViewBag.Error = "";
             return View();
         }
@@ -63,88 +63,88 @@ namespace PruebaTecnica.UI.AppWebAspCore.Controllers
         // POST: CitaController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Cita pCita)
+        public async Task<IActionResult> Create(AlquiladosYVendidos pAlquiladosYVendidos)
         {
             try
             {
                 // int result = 0;
-                int result = await citaBL.CrearAsync(pCita);
+                int result = await alquiladosYVBL.CrearAsync(pAlquiladosYVendidos);
                 return RedirectToAction(nameof(Index));
             }
             catch (Exception ex)
             {
                 ViewBag.Error = ex.Message;
-                ViewBag.Clientes = await clienteBL.ObtenerTodosAsync();
-                ViewBag.Usuarios = await usuarioBL.ObtenerTodosAsync();
-                ViewBag.servicios = await servicioBL.ObtenerTodosAsync();
-                return View(pCita); //si ocurrio un error se redirecciona a la vista create con el parametro
+                ViewBag.Clientes = await clientesBL.ObtenerTodosAsync();
+                ViewBag.Libros = await librosBL.ObtenerTodosAsync();
+                //ViewBag.servicios = await servicioBL.ObtenerTodosAsync();
+                return View(pAlquiladosYVendidos); //si ocurrio un error se redirecciona a la vista create con el parametro
             }
         }
 
         // GET: CitaController/Edit/5
-        public async Task<IActionResult> Edit(Cita pCita)
+        public async Task<IActionResult> Edit(AlquiladosYVendidos pAlquiladosYVendidos)
         {
-            var taskObtenerPorId = citaBL.ObtenerPorIdAsync(pCita);
-            var taskObtenerTodosClientes = clienteBL.ObtenerTodosAsync();
-            var taskObtenerTodosUsuarios = usuarioBL.ObtenerTodosAsync();
-            var cita = await taskObtenerPorId;
+            var taskObtenerPorId = alquiladosYVBL.ObtenerPorIdAsync(pAlquiladosYVendidos);
+            var taskObtenerTodosClientes = clientesBL.ObtenerTodosAsync();
+            var taskObtenerTodosLibros = librosBL.ObtenerTodosAsync();
+            var AlquiladoYV = await taskObtenerPorId;
             ViewBag.Clientes = await taskObtenerTodosClientes;
-            ViewBag.Usuarios = await taskObtenerTodosUsuarios;
+            ViewBag.Libros = await taskObtenerTodosLibros;
             ViewBag.Error = "";
-            return View(cita);
+            return View(AlquiladoYV);
         }
 
         // POST: CitaController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, Cita pCita)
+        public async Task<IActionResult> Edit(int id, AlquiladosYVendidos pAlquiladosYVendidos)
         {
             try
             {
-                int result = await citaBL.ModificarAsync(pCita);
+                int result = await alquiladosYVBL.ModificarAsync(pAlquiladosYVendidos);
                 return RedirectToAction(nameof(Index));
             }
             catch (Exception ex)
             {
                 ViewBag.Error = ex.Message;
-                ViewBag.Clientes = await clienteBL.ObtenerTodosAsync();
-                ViewBag.Usuarios = await usuarioBL.ObtenerTodosAsync();
-                return View(pCita);
+                ViewBag.Clientes = await clientesBL.ObtenerTodosAsync();
+                ViewBag.Libros = await librosBL.ObtenerTodosAsync();
+                return View(pAlquiladosYVendidos);
             }
         }
 
         // GET: CitaController/Delete/5
-        public async Task<IActionResult> Delete(Cita pCita)
+        public async Task<IActionResult> Delete(AlquiladosYVendidos pAlquiladosYVendidos)
         {
             ViewBag.Error = "";
-            var cita = await citaBL.ObtenerPorIdAsync(pCita);
-            cita.Cliente = await clienteBL.ObtenerPorIdAsync(new Cliente { Id = cita.IdCliente });
-            cita.Usuario = await usuarioBL.ObtenerPorIdAsync(new Usuario { Id = cita.IdUsuario });
-            return View(cita);
+            var AlquiladoYV = await alquiladosYVBL.ObtenerPorIdAsync(pAlquiladosYVendidos);
+            AlquiladoYV.Clientes = await clientesBL.ObtenerPorIdAsync(new Clientes { Id = AlquiladoYV.IdCliente });
+            AlquiladoYV.Libros = await librosBL.ObtenerPorIdAsync(new Libros { Id = AlquiladoYV.IdLibro });
+            return View(AlquiladoYV);
         }
 
         // POST: CitaController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Delete(int id, Cita pCita)
+        public async Task<IActionResult> Delete(int id, AlquiladosYVendidos pAlquiladosYVendidos)
         {
             try
             {
-                int result = await citaBL.EliminarAsync(pCita);
+                int result = await alquiladosYVBL.EliminarAsync(pAlquiladosYVendidos);
                 return RedirectToAction(nameof(Index));
             }
             catch (Exception ex)
             {
                 ViewBag.Error = ex.Message;
-                var cita = await citaBL.ObtenerPorIdAsync(pCita);
-                if (cita == null)
-                    cita = new Cita();
-                if (cita.Id > 0)
+                var AlquiladoYV = await alquiladosYVBL.ObtenerPorIdAsync(pAlquiladosYVendidos);
+                if (AlquiladoYV == null)
+                    AlquiladoYV = new AlquiladosYVendidos();
+                if (AlquiladoYV.Id > 0)
                 {
-                    cita.Cliente = await clienteBL.ObtenerPorIdAsync(new Cliente { Id = cita.IdCliente });
-                    cita.Usuario = await usuarioBL.ObtenerPorIdAsync(new Usuario { Id = cita.IdUsuario });
+                    AlquiladoYV.Clientes = await clientesBL.ObtenerPorIdAsync(new Clientes { Id = AlquiladoYV.IdCliente });
+                    AlquiladoYV.Libros = await librosBL.ObtenerPorIdAsync(new Libros { Id = AlquiladoYV.IdLibro });
                 }
-                return View(pCita);
+                return View(pAlquiladosYVendidos);
             }
         }
 
