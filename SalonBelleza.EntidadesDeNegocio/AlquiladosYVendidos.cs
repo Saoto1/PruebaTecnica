@@ -15,27 +15,27 @@ namespace PruebaTecnica.EntidadesDeNegocio
         [Key]
         public int Id { get; set; }
 
-        [Display(Name = "Clientes")]
+        [Display(Name = "Clientes*")]
         [ForeignKey("Clientes")]
         [Required(ErrorMessage = "Cliente es obligatorio")]
         public int IdCliente{ get; set; }
 
-        [Display(Name = "Libros")]
+        [Display(Name = "Libros*")]
         [ForeignKey("Libros")]
         [Required(ErrorMessage = "Titulo de libro es obligatorio")]
         public int IdLibro { get; set; }
 
-
+        [Display(Name = "Estado*")]
         [Required(ErrorMessage = "Estado es obligatorio")]
         public byte Estado { get; set; }
 
    
-        [Display(Name = "Fecha de alquiler o venta")]
-        public DateTime Desde { get; set; }
+        [Display(Name = "Fecha de alquiler o venta*")]
+        public DateTime? Desde { get; set; }
 
       
         [Display(Name = "Fecha de devolucion(en caso de alquiler)")]
-        public DateTime Hasta { get; set; }
+        public DateTime? Hasta { get; set; }
 
         public Clientes Clientes { get; set; }
 
@@ -47,9 +47,9 @@ namespace PruebaTecnica.EntidadesDeNegocio
 
         public enum Estado_Libros
         {
-            Disponible = 1,
-            Alquilado= 2,
-            Vendido=3
+            VENDIDO = 1,
+            ALQUILADOado = 2
+         
         }
 
     }

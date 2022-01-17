@@ -14,23 +14,24 @@ namespace PruebaTecnica.EntidadesDeNegocio
         [Key]
         public int Id { get; set; }
 
+        [Display(Name = "Teléfono*")]
         [Required(ErrorMessage = "El DUI obligatorio")]
         [StringLength(50, ErrorMessage = "Maximo 50 caracteres")]
         public string Dui { get; set; }
 
-
+        [Display(Name = "Nombre*")]
         [Required(ErrorMessage = "El nombre del cliente es obligatorio")]
         [StringLength(50, ErrorMessage = "Maximo 50 caracteres")]
         public string Nombre { get; set; }
 
-
+        [Display(Name = "Apellido*")]
         [Required(ErrorMessage = "El apellido del cliente es obligatorio")]
         [StringLength(50, ErrorMessage = "Maximo 50 caracteres")]
         public string Apellido { get; set; }
 
 
         [Required(ErrorMessage = "El Teléfono es obligatorio")]
-        [Display(Name = "Teléfono")]
+        [Display(Name = "Teléfono*")]
         public int Numero { get; set; }
 
         [NotMapped]

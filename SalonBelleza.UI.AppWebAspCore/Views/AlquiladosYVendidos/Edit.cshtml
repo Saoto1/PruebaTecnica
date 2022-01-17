@@ -6,7 +6,7 @@
     List<PruebaTecnica.EntidadesDeNegocio.Clientes> clientes = ViewBag.Clientes as List<PruebaTecnica.EntidadesDeNegocio.Clientes>;
 }
 
-<h1>Modificar Cita</h1>
+<h1>Modificar Registro</h1>
 <hr />
 <form asp-action="Edit">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -60,6 +60,7 @@
             </div>
         </div>
 
+
         <div class="col-md-4">
             <div class="form-group">
                 <label asp-for="Hasta" class="control-label"></label>
@@ -67,7 +68,7 @@
                 <span asp-validation-for="Hasta" class="text-danger"></span>
             </div>
         </div>
-
+    
     </div>
     <div class="row">
        
@@ -78,19 +79,19 @@
                     <option selected value="">SELECCIONAR</option>
                     @if (Model.Estado == 1)
                     {
-                        <option selected value="1">PENDIENTE</option>
+                <option selected value="1">VENDIDO</option>
                     }
                     else
                     {
-                        <option value="1">PENDIENTE</option>
+                <option value="1">VENDIDO</option>
                     }
                     @if (Model.Estado == 2)
                     {
-                        <option selected value="2">REALIZADA</option>
+                <option selected value="2">ALQUILADO</option>
                     }
                     else
                     {
-                        <option value="2">REALIZADA</option>
+                <option value="2">ALQUILADOA</option>
                     }
 
                 </select>
