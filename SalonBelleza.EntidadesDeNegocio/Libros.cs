@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 
+
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-
 
 namespace PruebaTecnica.EntidadesDeNegocio
 {
@@ -27,9 +27,8 @@ namespace PruebaTecnica.EntidadesDeNegocio
         public string Autor { get; set; }
 
 
-        [Required(ErrorMessage = "La Fecha de publicacion es obligatoria")]
-        [StringLength(50, ErrorMessage = "Maximo 50 caracteres")]
-        [Display(Name = "Fecha de publicacion")]
+        [Required(ErrorMessage = "La Fecha de publicacion es obligatoria")]   
+        //[Display(Name = "Fecha de publicacion")]
         public DateTime FechaPublicacion { get; set; }
 
 
@@ -42,7 +41,7 @@ namespace PruebaTecnica.EntidadesDeNegocio
         public byte Estado { get; set; }
 
         [Required(ErrorMessage = "El Precio es obligatorio")]
-        public double Precio { get; set; }
+        public decimal Precio { get; set; }
 
    
         public string Otros { get; set; }
