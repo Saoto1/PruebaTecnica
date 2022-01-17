@@ -14,7 +14,7 @@ namespace PruebaTecnica.EntidadesDeNegocio
         [Key]
         public int Id { get; set; }
 
-        [Display(Name = "Teléfono*")]
+        [Display(Name = "Dui*")]
         [Required(ErrorMessage = "El DUI obligatorio")]
         [StringLength(50, ErrorMessage = "Maximo 50 caracteres")]
         public string Dui { get; set; }
