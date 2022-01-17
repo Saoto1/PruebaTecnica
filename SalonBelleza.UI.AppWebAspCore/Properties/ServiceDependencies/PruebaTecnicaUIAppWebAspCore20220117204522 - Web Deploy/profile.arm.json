@@ -21,7 +21,7 @@
     },
     "resourceName": {
       "type": "string",
-      "defaultValue": "PruebaTecnicaUIAppWebAspCore20220117202843",
+      "defaultValue": "PruebaTecnicaUIAppWebAspCore20220117204522",
       "metadata": {
         "description": "Name of the main resource to be created by this template."
       }
