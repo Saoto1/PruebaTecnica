@@ -24,12 +24,13 @@ namespace PruebaTecnica.AccesoADatos
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-           
+
 
             //String de conexion a la base remota
-            //optionsBuilder.UseSqlServer(@"Data Source=198.38.83.200;Initial Catalog=eliqsv_salonbelleza2;Persist Security Info=True;User ID=eliqsv_andromeda;Password=fszlq6vgdxuhecrmoaiw");
+            optionsBuilder.UseSqlServer(@"workstation id=Libreria.mssql.somee.com;packet size=4096;user id=SaulValdez_SQLLogin_1;pwd=w3f5h3biaa;data source=Libreria.mssql.somee.com;persist security info=False;initial catalog=Libreria");
 
-            optionsBuilder.UseSqlServer(@"Data Source=DESKTOP-O5GJIMR\MSSQLSERVER01;Initial Catalog=Libreria;Integrated Security=True;");
+            //string de conexion base de datos local
+            //optionsBuilder.UseSqlServer(@"Data Source=DESKTOP-O5GJIMR\MSSQLSERVER01;Initial Catalog=Libreria;Integrated Security=True;");
         }
 
 
