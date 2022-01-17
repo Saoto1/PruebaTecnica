@@ -16,7 +16,7 @@ namespace PruebaTecnica.AccesoADatos
 
 
         public DbSet<Clientes> Cliente { get; set; }
-        public DbSet<Libros> Libro { get; set; }
+        public DbSet<Libros> Libros { get; set; }
         public DbSet<AlquiladosYVendidos> AlquiladosYVendidos { get; set; }
 
 
@@ -27,8 +27,9 @@ namespace PruebaTecnica.AccesoADatos
            
 
             //String de conexion a la base remota
-            optionsBuilder.UseSqlServer(@"Data Source=198.38.83.200;Initial Catalog=eliqsv_salonbelleza2;Persist Security Info=True;User ID=eliqsv_andromeda;Password=fszlq6vgdxuhecrmoaiw");
+            //optionsBuilder.UseSqlServer(@"Data Source=198.38.83.200;Initial Catalog=eliqsv_salonbelleza2;Persist Security Info=True;User ID=eliqsv_andromeda;Password=fszlq6vgdxuhecrmoaiw");
 
+            optionsBuilder.UseSqlServer(@"Data Source=DESKTOP-O5GJIMR\MSSQLSERVER01;Initial Catalog=Libreria;Integrated Security=True;");
         }
 
 
