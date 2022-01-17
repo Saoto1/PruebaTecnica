@@ -15,24 +15,26 @@ namespace PruebaTecnica.EntidadesDeNegocio
         [Key]
         public int Id { get; set; }
 
+        [Display(Name = "Clientes")]
         [ForeignKey("Clientes")]
-        [Required(ErrorMessage = "IdCliente es obligatorio")]
+        [Required(ErrorMessage = "Cliente es obligatorio")]
         public int IdCliente{ get; set; }
 
+        [Display(Name = "Libros")]
         [ForeignKey("Libros")]
-        [Required(ErrorMessage = "IdLibro es obligatorio")]
+        [Required(ErrorMessage = "Titulo de libro es obligatorio")]
         public int IdLibro { get; set; }
 
 
-        [Required(ErrorMessage = "El total es obligatorio")]
+        [Required(ErrorMessage = "Estado es obligatorio")]
         public byte Estado { get; set; }
 
-        [Required(ErrorMessage = "El total es obligatorio")]
-        [Display(Name = "Fecha De Entrega")]
+   
+        [Display(Name = "Fecha de alquiler o venta")]
         public DateTime Desde { get; set; }
 
-        [Required(ErrorMessage = "El total es obligatorio")]
-        [Display(Name = "Fecha De Devolucion")]
+      
+        [Display(Name = "Fecha de devolucion(en caso de alquiler)")]
         public DateTime Hasta { get; set; }
 
         public Clientes Clientes { get; set; }
