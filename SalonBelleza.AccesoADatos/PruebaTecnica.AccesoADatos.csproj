@@ -12,4 +12,8 @@
     <ProjectReference Include="..\SalonBelleza.EntidadesDeNegocio\PruebaTecnica.EntidadesDeNegocio.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Documentos\" />
+  </ItemGroup>
+
 </Project>
