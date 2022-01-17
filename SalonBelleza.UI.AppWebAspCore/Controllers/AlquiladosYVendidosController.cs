@@ -29,12 +29,12 @@ namespace PruebaTecnica.UI.AppWebAspCore.Controllers
             var taskBuscarUsuario = alquiladosYVBL.BuscarIncluirLibrosAsync(pAlquiladosYVendidos);
             var taskObtenerTodosLibros = librosBL.ObtenerTodosAsync();
             var taskBuscarUsuarioCliente = alquiladosYVBL.BuscarIncluirClienteLibroAsync(pAlquiladosYVendidos);
-            var citas = await taskBuscarUsuarioCliente;
+            var alquiladosYV = await taskBuscarUsuarioCliente;
             ViewBag.Top = pAlquiladosYVendidos.Top_Aux;
             ViewBag.Clientes = await taskObtenerTodosClientes;
             ViewBag.Libros = await taskObtenerTodosLibros;
 
-            return View(alquiladosYVBL);
+            return View(alquiladosYV);
         }
 
         // GET: CitaController/Details/5
