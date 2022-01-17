@@ -32,8 +32,7 @@ namespace PruebaTecnica.AccesoADatos
                 libro.Titulo = pLibros.Titulo;
                 libro.Autor = pLibros.Autor;
                 libro.FechaPublicacion = pLibros.FechaPublicacion;
-                libro.Genero = pLibros.Genero;
-                libro.Estado = pLibros.Estado;
+                libro.Genero = pLibros.Genero;             
                 libro.Precio = pLibros.Precio;
                 libro.Otros = pLibros.Otros;
                 dbContexto.Update(libro);
@@ -88,20 +87,13 @@ namespace PruebaTecnica.AccesoADatos
             if (!string.IsNullOrWhiteSpace(pLibros.Autor))
                 pQuery = pQuery.Where(s => s.Autor.Contains(pLibros.Autor));
 
-            if (pLibros.FechaPublicacion.Year > 1000)
-            {
-                DateTime fechaInicial = new DateTime(pLibros.FechaPublicacion.Year, pLibros.FechaPublicacion.Month, pLibros.FechaPublicacion.Day, 0, 0, 0);
-                DateTime fechaFinal = fechaInicial.AddDays(1).AddMilliseconds(-1);
-                pQuery = pQuery.Where(s => s.FechaPublicacion >= fechaInicial && s.FechaPublicacion <= fechaFinal);
-            }
-            pQuery = pQuery.OrderByDescending(s => s.Id).AsQueryable();
+            
+      
 
 
             if (!string.IsNullOrWhiteSpace(pLibros.Genero))
                 pQuery = pQuery.Where(s => s.Genero.Contains(pLibros.Genero));
-
-            if (pLibros.Estado > 0)
-                pQuery = pQuery.Where(s => s.Estado == pLibros.Estado);
+           
 
             if (pLibros.Precio > 0)
                 pQuery = pQuery.Where(s => s.Precio == pLibros.Precio);
