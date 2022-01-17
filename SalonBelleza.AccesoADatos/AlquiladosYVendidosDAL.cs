@@ -23,8 +23,7 @@ namespace PruebaTecnica.AccesoADatos
                     try
                     {
 
-                        dbContexto.Add(pAlquiladosYVendidos);
-                        //  DetalleCitaDAL.CrearDetalles(dbContexto, pCita.DetalleCita, pCita);
+                        dbContexto.Add(pAlquiladosYVendidos);                    
                         result = await dbContexto.SaveChangesAsync();
                         await transaccion.CommitAsync();
                     }
