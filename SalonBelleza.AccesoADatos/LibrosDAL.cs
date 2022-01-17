@@ -28,7 +28,7 @@ namespace PruebaTecnica.AccesoADatos
             int result = 0;
             using (var dbContexto = new DBContexto())
             {
-                var libro = await dbContexto.Libro.FirstOrDefaultAsync(s => s.Id == pLibros.Id);
+                var libro = await dbContexto.Libros.FirstOrDefaultAsync(s => s.Id == pLibros.Id);
                 libro.Titulo = pLibros.Titulo;
                 libro.Autor = pLibros.Autor;
                 libro.FechaPublicacion = pLibros.FechaPublicacion;
@@ -47,8 +47,8 @@ namespace PruebaTecnica.AccesoADatos
             int result = 0;
             using (var bdContexto = new DBContexto())
             {
-                var libro = await bdContexto.Libro.FirstOrDefaultAsync(s => s.Id == pLibros.Id);
-                bdContexto.Libro.Remove(libro);
+                var libro = await bdContexto.Libros.FirstOrDefaultAsync(s => s.Id == pLibros.Id);
+                bdContexto.Libros.Remove(libro);
                 result = await bdContexto.SaveChangesAsync();
             }
             return result;
@@ -59,7 +59,7 @@ namespace PruebaTecnica.AccesoADatos
             var libro = new Libros();
             using (var bdContexto = new DBContexto())
             {
-                libro = await bdContexto.Libro.FirstOrDefaultAsync(s => s.Id == pLibros.Id);
+                libro = await bdContexto.Libros.FirstOrDefaultAsync(s => s.Id == pLibros.Id);
             }
             return libro;
         }
@@ -71,7 +71,7 @@ namespace PruebaTecnica.AccesoADatos
             var usuario = new List<Libros>(); //Variable que va a devolver nuestro metodo, en este caso una Lista.
             using (var dbContexto = new DBContexto())
             {
-                usuario = await dbContexto.Libro.ToListAsync();
+                usuario = await dbContexto.Libros.ToListAsync();
             }
             return usuario;
         }
@@ -87,6 +87,15 @@ namespace PruebaTecnica.AccesoADatos
 
             if (!string.IsNullOrWhiteSpace(pLibros.Autor))
                 pQuery = pQuery.Where(s => s.Autor.Contains(pLibros.Autor));
+
+            if (pLibros.FechaPublicacion.Year > 1000)
+            {
+                DateTime fechaInicial = new DateTime(pLibros.FechaPublicacion.Year, pLibros.FechaPublicacion.Month, pLibros.FechaPublicacion.Day, 0, 0, 0);
+                DateTime fechaFinal = fechaInicial.AddDays(1).AddMilliseconds(-1);
+                pQuery = pQuery.Where(s => s.FechaPublicacion >= fechaInicial && s.FechaPublicacion <= fechaFinal);
+            }
+            pQuery = pQuery.OrderByDescending(s => s.Id).AsQueryable();
+
 
             if (!string.IsNullOrWhiteSpace(pLibros.Genero))
                 pQuery = pQuery.Where(s => s.Genero.Contains(pLibros.Genero));
@@ -111,7 +120,7 @@ namespace PruebaTecnica.AccesoADatos
             var libros = new List<Libros>();
             using (var bdContecto = new DBContexto())
             {
-                var select = bdContecto.Libro.AsQueryable();
+                var select = bdContecto.Libros.AsQueryable();
                 select = QuerySelect(select, pLibros);
                 libros = await select.ToListAsync();
             }
