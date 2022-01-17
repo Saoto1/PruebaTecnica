@@ -26,9 +26,9 @@ namespace PruebaTecnica.UI.AppWebAspCore.Controllers
                 pLibros.Top_Aux = 10;
                 else if (pLibros.Top_Aux == -1)
                 pLibros.Top_Aux = 0;
-                var clientes = await librosBL.BuscarAsync(pLibros);
+                var libros = await librosBL.BuscarAsync(pLibros);
                 ViewBag.Top = pLibros.Top_Aux;
-                return View(clientes);
+                return View(libros);
             }
 
             // GET: ClienteController/Details/5
